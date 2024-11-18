@@ -13,6 +13,86 @@ public class Patient
     public List<Appointment> AppointmentList { get; set; }
     private List<string> PaymentMethods { get; set; }
     public MedicalRecord MedicalRecord { get; set; }
+//CreateAccount Method
+// Methods
+
+    // CreateAccount
+    public bool CreateAccount(string email, string password, string confirmPassword, string name, string phoneNumber, DateTime dateOfBirth)
+    {
+        if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password) || password != confirmPassword)
+        {
+            Console.WriteLine("Account creation failed. Please check your inputs.");
+            return false;
+        }
+
+        Console.WriteLine($"Account successfully created for {name} ({email}).");
+        return true;
+    }
+
+    // Login
+    public void Login(string email, string password)
+    {
+        Console.WriteLine($"Login successful for {email}.");
+    }
+
+    // EnterBookingDetails
+    public void EnterBookingDetails(string details)
+    {
+        Console.WriteLine($"Booking details entered: {details}");
+    }
+
+    // FillRegistrationForm
+    public void FillRegistrationForm(int formID)
+    {
+        Console.WriteLine($"Registration form with ID {formID} has been filled.");
+    }
+
+    // CreatePassword
+    public void CreatePassword(string newPassword)
+    {
+        Console.WriteLine("Password created successfully.");
+    }
+
+    // AgreeTermsAndConditions
+    public void AgreeTermsAndConditions()
+    {
+        Console.WriteLine("Terms and conditions agreed.");
+    }
+
+    // SubmitForm
+    public void SubmitForm()
+    {
+        Console.WriteLine("Form submitted successfully.");
+    }
+
+    // ViewAppointment
+    public void ViewAppointment()
+    {
+        Console.WriteLine("Viewing appointments...");
+        foreach (var appointment in AppointmentList)
+        {
+            Console.WriteLine($"- Appointment ID: {appointment.AppointmentID}, Date: {appointment.Date}, Status: {appointment.Status}");
+        }
+    }
+
+    // SelectAppointment
+    public void SelectAppointment(int appointmentID)
+    {
+        Console.WriteLine($"Appointment with ID {appointmentID} has been selected.");
+    }
+
+    // MakePayment
+    public void MakePayment(decimal amount)
+    {
+        Console.WriteLine($"Payment of {amount:C} processed successfully.");
+    }
+
+    // ViewAssessment
+    public void ViewAssessment()
+    {
+        Console.WriteLine("Assessment details viewed.");
+    }
+}
 
 // Extending Patient Class with static method to fetch data
     public partial class Patient
