@@ -117,6 +117,38 @@ public class Feedback
 public class RegistrationForm
 {
     public int FormID { get; set; }
+   public Dictionary<string, string> PatientDetails { get; set; } = new Dictionary<string, string>();
+
+ // Constructor
+    public RegistrationForm(int formID)
+    {
+        FormID = formID;
+    }
+
+    // Method: validateInformation
+    public bool ValidateInformation()
+    {
+        // Ensure all required patient details are present
+        if (PatientDetails == null || PatientDetails.Count == 0)
+        {
+            Console.WriteLine("No patient details provided.");
+            return false;
+        }
+
+        // Required fields
+        string[] requiredFields = { "Name", "Email", "PhoneNumber", "DateOfBirth" };
+
+        foreach (var field in requiredFields)
+        {
+            if (!PatientDetails.ContainsKey(field) || string.IsNullOrWhiteSpace(PatientDetails[field]))
+            {
+                Console.WriteLine($"Missing or invalid information for: {field}");
+                return false;
+            }
+        }
+
+        Console.WriteLine("All patient information is valid.");
+        return true;
 }
 
 public class Receptionist
@@ -446,6 +478,38 @@ public class ConfirmationEmail
     public string RecipientEmail { get; set; }
     public string Message { get; set; }
 }
+public ConfirmationEmail(int patientID, string email, string message)
+    {
+        PatientID = patientID;
+        Email = email;
+        Message = message;
+    }
+ // Simulate sending the email
+        Console.WriteLine($"Sending confirmation email to {Email}...");
+        Console.WriteLine($"Patient ID: {PatientID}");
+        Console.WriteLine($"Message: {Message}");
+        Console.WriteLine("Confirmation email sent successfully!")
+
+    // Method: Send
+    public void Send()
+    {
+        if (string.IsNullOrWhiteSpace(Email))
+        {
+            Console.WriteLine("Invalid email address. Cannot send confirmation email.");
+            return;
+        }
+
+        if (string.IsNullOrWhiteSpace(Message))
+        {
+            Console.WriteLine("Message content is empty. Cannot send confirmation email.");
+            return;
+        }
+
+        // Simulate sending the email
+        Console.WriteLine($"Sending confirmation email to {Email}...");
+        Console.WriteLine($"Patient ID: {PatientID}");
+        Console.WriteLine($"Message: {Message}");
+        Console.WriteLine("Confirmation email sent successfully!");
 
 public class Account
 {
